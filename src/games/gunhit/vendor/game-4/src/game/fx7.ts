@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, clamp, drawSprite, easeOutCubic, glowSprite, mulberry32, rand, starSprite } from './core';
 import type { FX } from './particles';
 import { drawTrefoil } from './shapes7';

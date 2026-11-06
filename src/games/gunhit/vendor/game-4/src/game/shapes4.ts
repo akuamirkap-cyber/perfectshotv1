@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, clamp, drawSprite, easeOutBack, easeOutCubic, glowSprite, lin, makeCanvas, mulberry32, polyPath, roundRect, starSprite } from './core';
 import { drawAmmoGlyph5, drawStuckItem5 } from './shapes5';
 import type { StuckItem, WeaponId } from './weapons';

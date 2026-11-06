@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, clamp, drawSprite, easeInCubic, glowSprite, lerp, makeBolt, normAngle, pick, rand, randomPoly } from './core';
 import { drawCasing, makeCracks, strokeLines } from './art';
 import { CONF_HEX, drawBolt, drawChicken, drawHarpoonProj, drawFastPizzaSlice, drawPlasmaOrb, drawSeed } from './shapes3';

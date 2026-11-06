@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, makeCanvas, pick, rand } from './core';
 import { K, type Particle, type Particles } from './particles';
 import { CONF_HEX, drawFeather, drawLeaf } from './shapes3';

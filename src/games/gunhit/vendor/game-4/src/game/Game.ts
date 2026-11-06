@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, H, TAU, W, angleDiff, drawSprite, easeOutBack, easeOutCubic, glowSprite, makeCanvas, normAngle, pick, rand, randomPoly } from './core';
 import {
   TEX_SCALE,

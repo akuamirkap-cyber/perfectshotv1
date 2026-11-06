@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Synthesised firework sound engine (WebAudio, no assets needed)
 
 const PENTA = [0, 2, 4, 7, 9];

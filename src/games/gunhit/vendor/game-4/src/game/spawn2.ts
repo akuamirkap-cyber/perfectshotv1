@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, clamp, pick, rand, randomPoly } from './core';
 import { K, type Particle, type Particles } from './particles';
 import { drawBubble, drawSnowball, drawSnowflake } from './shapes2';

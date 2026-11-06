@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ───────────────────────── Core helpers: math, random, sprite cache ─────────────────────────
 export const TAU = Math.PI * 2;
 export const W = 420; // logical width

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, rand } from './core';
 import { K, type Particle, type Particles } from './particles';
 import { type GemPal, drawShardBolt } from './shapes7';

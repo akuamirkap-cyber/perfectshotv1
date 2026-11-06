@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, clamp, drawSprite, glowSprite, lin, makeBolt, polyPath, roundRect, starSprite } from './core';
 import { drawSnowflake } from './shapes2';
 import { drawElectricOrb, strokeBolt } from './shapes5';

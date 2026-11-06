@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type ProjKind = 'arrow' | 'bullet' | 'electro' | 'fire' | 'plasma' | 'disc' | 'wave';
 export type BeamKind = 'sniper' | 'phaser' | 'proton' | 'tripod' | 'iron';

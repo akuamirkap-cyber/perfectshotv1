@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, clamp, drawSprite, glowSprite, lin, polyPath, roundRect, starSprite } from './core';
 import { drawBee, drawBlossom, drawCoconut, drawGravityOrb, drawFireRocket, drawKeris, drawKerisBlade, drawPetal, hexPath } from './shapes4';
 import { drawWeapon5 } from './weaponArt5';

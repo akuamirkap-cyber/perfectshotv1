@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, clamp, drawSprite, glowSprite, lin, makeBolt, makeCanvas, polyPath, roundRect } from './core';
 import { GOLD_X, GOLD_Y, drawShell, drawSingularity, drawStone } from './art';
 import { drawWeapon2 } from './weaponArt2';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, clamp, drawSprite, easeOutCubic, glowSprite, lerp, rand } from './core';
 import type { FX } from './particles';
 import { drawSnowflake } from './shapes2';

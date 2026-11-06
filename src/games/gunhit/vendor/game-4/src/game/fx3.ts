@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, drawSprite, glowSprite, rand, starSprite } from './core';
 import { type FX, spike } from './particles';
 

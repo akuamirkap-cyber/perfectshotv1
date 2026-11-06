@@ -1,4 +1,5 @@
-import { TAU, rng, roundRect, drawNineRadial, withAlpha } from "./core";
+import { TAU, rng, roundRect, drawNineRadial, withAlpha, metal } from "./core";
+export { roundRect, metal };
 
 export var T = {
 	steel: [

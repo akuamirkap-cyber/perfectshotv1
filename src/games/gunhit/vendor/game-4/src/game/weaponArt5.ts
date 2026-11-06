@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, clamp, drawSprite, glowSprite, lin, makeBolt, mulberry32, polyPath, roundRect, starSprite } from './core';
 import { PAINT, RAINBOW, crescentPath, drawCloud, drawElectricOrb, drawGoldStar, drawRainbowArc, drawSandal, strokeBolt } from './shapes5';
 import type { WeaponAnim, WeaponId } from './weapons';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, drawSprite, glowSprite, lerp, makeBolt, pick, rand, randomPoly } from './core';
 import { drawDart, drawGoldBullet, drawSingularity, drawStone, makeCracks, strokeLines } from './art';
 import { GlowLines, GlowSpot, K, Light, Lightning, Rays, SplashSheet, Streak } from './particles';

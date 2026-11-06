@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { TAU, pick, rand, randomPoly } from './core';
 import { WOOD_COLS } from './art';
 import { K, type Particles } from './particles';

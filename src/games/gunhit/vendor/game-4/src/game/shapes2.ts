@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, drawSprite, glowSprite, lin, polyPath, starSprite } from './core';
 import { drawAmmoGlyph3, drawStuckItem3 } from './shapes3';
 import type { StuckItem, WeaponId } from './weapons';

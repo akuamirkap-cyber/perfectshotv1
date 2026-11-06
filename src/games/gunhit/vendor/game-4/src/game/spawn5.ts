@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { drawSpiritMote } from '@/games/shared/spiritArt';
 import { type Ctx, TAU, drawSprite, glowSprite, pick, rand, randomPoly, starSprite } from './core';
 import { K, type Particle, type Particles } from './particles';

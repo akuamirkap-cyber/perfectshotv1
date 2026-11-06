@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, drawSprite, glowSprite, lerp, pick, polyPath, rand, randomPoly } from './core';
 import { drawBanana, drawBananaSlice, drawBubble, drawIronBall, drawRifleBullet, drawSnowball } from './shapes2';
 import { makeCracks, strokeLines } from './art';

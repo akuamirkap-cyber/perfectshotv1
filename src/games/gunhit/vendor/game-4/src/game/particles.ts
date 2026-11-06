@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, dotSprite, drawSprite, glowSprite, lerp, makeBolt, makeCanvas, polyPath, rand, smokeSprite, starSprite } from './core';
 
 // particle kinds

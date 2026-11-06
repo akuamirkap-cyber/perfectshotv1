@@ -407,7 +407,7 @@ export default defineConfig(() => {
            * the menus and the weapon table; the art and the engine arrive as
            * their own files right after first paint.
            */
-          advancedChunks: {
+          codeSplitting: {
             groups: [
               // Small modules both the menu and the engine use. They get their
               // own chunk so the entry can import them without pulling the

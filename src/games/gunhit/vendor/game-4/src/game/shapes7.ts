@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { drawBreakerCoin } from '@/games/shared/coinArt';
 import { type Ctx, TAU, clamp, drawSprite, easeOutBack, easeOutCubic, glowSprite, lin, polyPath, roundRect, starSprite } from './core';
 import { RAINBOW, crescentPath } from './shapes5';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, drawSprite, glowSprite, lin, makeCanvas, mulberry32, polyPath, roundRect, starSprite } from './core';
 import { drawFlameShape, drawSnowflake } from './shapes2';
 import { drawWeapon3 } from './weaponArt3';

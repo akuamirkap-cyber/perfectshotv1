@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, clamp, drawSprite, glowSprite, lerp, pick, rand, randomPoly } from './core';
 import { makeCracks, strokeLines } from './art';
 import { DragonSpirit, GravityPulse, HexBurst, RadialFlash, Mandala, SpiralFX } from './fx4';

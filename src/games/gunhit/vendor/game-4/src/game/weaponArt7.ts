@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, clamp, drawSprite, easeOutCubic, glowSprite, lin, polyPath, roundRect, starSprite } from './core';
 import { RAINBOW } from './shapes5';
 import { drawIceCluster } from './shapes6';

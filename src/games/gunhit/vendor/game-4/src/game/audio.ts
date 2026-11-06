@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ───────────────────────── Procedural SFX (WebAudio, no assets) ─────────────────────────
 type FilterKind = 'lowpass' | 'highpass' | 'bandpass';
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Ctx, TAU, drawSprite, glowSprite, makeBolt, pick, rand, randomPoly } from './core';
 import { makeCracks, strokeLines } from './art';
 import { RadialFlash } from './fx4';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { drawBreakerCoin } from '@/games/shared/coinArt';
 import { type Ctx, TAU, drawSprite, glowSprite, makeBolt, pick, rand, randomPoly } from './core';
 import { makeCracks, strokeLines } from './art';
