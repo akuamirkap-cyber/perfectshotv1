@@ -1,0 +1,103 @@
+/**
+ * Fonts are bundled, not fetched.
+ *
+ * The app used to pull Inter / Russo One / Fredoka / Space Grotesk / Bungee from
+ * Google Fonts. A Capacitor build runs offline, and a refused webfont request
+ * silently falls back to the system face — the HUD, the menus and the canvas
+ * "STAGE CLEAR" banner all changed shape on the phone. These are the same faces,
+ * shipped inside the app.
+ *
+ * Only the latin subset (the copy is Indonesian/English) and only woff2 (every
+ * WebView this game targets, Android 7+, reads it) so the download stays small.
+ */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@fontsource/inter/files/inter-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('@fontsource/inter/files/inter-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('@fontsource/inter/files/inter-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@fontsource/inter/files/inter-latin-700-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Russo One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@fontsource/russo-one/files/russo-one-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Bungee';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@fontsource/bungee/files/bungee-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@fontsource/fredoka/files/fredoka-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('@fontsource/fredoka/files/fredoka-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@fontsource/fredoka/files/fredoka-latin-700-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@fontsource/space-grotesk/files/space-grotesk-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('@fontsource/space-grotesk/files/space-grotesk-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2') format('woff2');
+}

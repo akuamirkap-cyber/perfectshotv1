@@ -1,0 +1,6 @@
+{
+  "name": "Game Arcade Hub",
+  "description": "Pilih dan mainkan 3 game seru: Diamond Breaker, Gun Hit Arcade, dan Knife Boss 100 Lv.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

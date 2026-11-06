@@ -1,0 +1,749 @@
+@import "tailwindcss";
+
+html, body, #root {
+  margin: 0;
+  height: 100%;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  background: #05060a;
+  overscroll-behavior: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.font-game {
+  font-family: 'Russo One', system-ui, sans-serif;
+}
+
+.game-font {
+  font-family: 'Fredoka', system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+/* Animations for Rifle Rock */
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(40px) scale(.95); }
+  to { opacity: 1; transform: none; }
+}
+.panel-in { opacity: 0; animation: panelIn .45s cubic-bezier(.2,.9,.3,1.3) forwards; }
+
+@keyframes starPop {
+  0% { opacity: 0; transform: scale(0) rotate(-40deg); }
+  70% { transform: scale(1.3) rotate(10deg); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.star-pop { opacity: 0; animation: starPop .5s ease-out forwards; }
+
+@keyframes comboPop {
+  0% { transform: scale(1.6); opacity: .2; }
+  60% { transform: scale(.94); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.combo-pop { animation: comboPop .28s ease-out; }
+
+@keyframes coinPop {
+  0% { transform: scale(1.45); filter: brightness(1.8); }
+  100% { transform: scale(1); filter: none; }
+}
+.coin-pop { animation: coinPop .18s ease-out; }
+
+/* A shared glossy-button finish for every control inside the Gun Hit Arcade slide. */
+@keyframes sga-gloss-sweep {
+  0%, 22% { transform: translateX(-170%) skewX(-22deg); opacity: 0; }
+  34% { opacity: .72; }
+  68%, 100% { transform: translateX(470%) skewX(-22deg); opacity: 0; }
+}
+.gunhit-sga button:not([data-gloss="off"]) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-top-color: rgba(255,255,255,.72);
+  border-left-color: rgba(255,255,255,.34);
+  border-right-color: rgba(255,255,255,.34);
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,.7), inset 0 8px 12px rgba(255,255,255,.1), inset 0 -3px 0 rgba(0,0,0,.2), 0 7px 16px rgba(0,0,0,.3);
+  transition: filter .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.gunhit-sga button.fixed:not([data-gloss="off"]) { position: fixed; }
+.gunhit-sga button.absolute:not([data-gloss="off"]) { position: absolute; }
+.gunhit-sga button:not([data-gloss="off"])::before,
+.gunhit-sga button:not([data-gloss="off"])::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.gunhit-sga button:not([data-gloss="off"])::before {
+  inset: 1px 4px auto;
+  height: 44%;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,.58), rgba(255,255,255,.3) 42%, rgba(255,255,255,.11) 78%, transparent);
+}
+.gunhit-sga button:not([data-gloss="off"])::after {
+  top: -40%;
+  bottom: -40%;
+  left: -48%;
+  width: 42%;
+  opacity: 0;
+  transform: translate3d(-170%, 0, 0) skewX(-22deg);
+  background: linear-gradient(100deg, transparent 4%, rgba(255,255,255,.16) 32%, rgba(255,255,255,.78) 48%, rgba(255,255,255,.2) 62%, transparent 96%);
+}
+.gunhit-sga button[data-gloss="cta"]::after,
+.gunhit-sga button:not([data-gloss="off"]):hover::after,
+.gunhit-sga button:not([data-gloss="off"]):focus-visible::after {
+  animation: sga-gloss-sweep 3.4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.gunhit-sga button:not([data-gloss="off"]):hover {
+  filter: brightness(1.14) saturate(1.12);
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,.85), inset 0 9px 14px rgba(255,255,255,.14), inset 0 -3px 0 rgba(0,0,0,.2), 0 9px 20px rgba(0,0,0,.34);
+}
+.gunhit-sga button:not([data-gloss="off"]):active { filter: brightness(.96); }
+.gunhit-sga button:not([data-gloss="off"]):focus-visible {
+  outline: 2px solid rgba(255,255,255,.88);
+  outline-offset: -3px;
+}
+
+/* Animations for Gun Hit */
+@keyframes pop-in {
+  0% { transform: scale(0.6); opacity: 0; }
+  70% { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.pop-in { animation: pop-in 0.45s cubic-bezier(.2,.9,.3,1.3) both; }
+
+@keyframes pulse-btn {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 196, 0, 0.55); }
+  50% { transform: scale(1.05); box-shadow: 0 0 0 14px rgba(255, 196, 0, 0); }
+}
+.pulse-btn { animation: pulse-btn 1.6s ease-in-out infinite; }
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.float-y { animation: float-y 2.4s ease-in-out infinite; }
+
+/* Animations for Knife Hit */
+.txt-3d { text-shadow: 0 3px 0 rgba(0,0,0,.35), 0 6px 16px rgba(0,0,0,.35); }
+.txt-glow-gold { text-shadow: 0 3px 0 #9a5b00, 0 0 22px rgba(255,190,60,.55); }
+.txt-glow-green { text-shadow: 0 3px 0 #0d5c33, 0 0 22px rgba(74,222,128,.5); }
+.txt-glow-yellow { text-shadow: 0 2px 0 #8a6500, 0 0 16px rgba(253,224,71,.6); }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin-rev { to { transform: rotate(-360deg); } }
+.spin-cw { animation: spin 20s linear infinite; }
+.spin-ccw { animation: spin-rev 32s linear infinite; }
+.spin-mid { animation: spin 12s linear infinite; }
+.spin-khas { animation: spin 46s linear infinite; }
+.spin-khas-rev { animation: spin-rev 70s linear infinite; }
+
+@keyframes glow-pulse {
+  0%,100% { transform: scale(1); opacity: .8; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+.glow-pulse { animation: glow-pulse 2.2s ease-in-out infinite; }
+
+@keyframes flare {
+  0% { transform: translate(-50%,-50%) scaleX(0); opacity: 0; }
+  25% { transform: translate(-50%,-50%) scaleX(1); opacity: 1; }
+  100% { transform: translate(-50%,-50%) scaleX(1.8); opacity: 0; }
+}
+.flare { animation: flare 1s ease-out both; }
+
+@keyframes beam-up {
+  0% { transform: translateX(-50%) scaleX(.2) scaleY(0); opacity: 0; }
+  25% { transform: translateX(-50%) scaleX(1) scaleY(1); opacity: 1; }
+  100% { transform: translateX(-50%) scaleX(1.6) scaleY(1); opacity: 0; }
+}
+.beam-up { animation: beam-up 1.3s ease-out both; transform-origin: 50% 100%; }
+
+@keyframes shine-sweep {
+  0% { transform: translateX(-180%) skewX(-22deg); }
+  55%,100% { transform: translateX(380%) skewX(-22deg); }
+}
+.shine-sweep { animation: shine-sweep 2.4s ease-in-out infinite; }
+
+@keyframes weapon-shine-slide {
+  0% { transform: translateX(0); opacity: 0; }
+  8% { opacity: 1; }
+  55% { transform: translateX(380px); opacity: 1; }
+  62%,100% { transform: translateX(380px); opacity: 0; }
+}
+.weapon-shine-sweep { animation: weapon-shine-slide 2.6s ease-in-out infinite; }
+
+@keyframes coin-spin {
+  0% { transform: rotateY(-18deg) scale(1); }
+  50% { transform: rotateY(18deg) scale(1.06); }
+  100% { transform: rotateY(-18deg) scale(1); }
+}
+.coin-spin { animation: coin-spin 1.6s ease-in-out infinite; transform-style: preserve-3d; }
+
+@keyframes chest-hit {
+  0%,100% { transform: translate(0,0) rotate(0); }
+  25% { transform: translate(-4px,1px) rotate(-2deg); }
+  55% { transform: translate(4px,-2px) rotate(2deg); }
+  80% { transform: translate(-2px,0) rotate(-1deg); }
+}
+.chest-hit { animation: chest-hit .22s ease-out; }
+
+/* ---------- Knife Hit: rays & particles ---------- */
+@keyframes rays-in {
+  0% { transform: scale(.1) rotate(-60deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+.rays-in { animation: rays-in .9s cubic-bezier(.2,.9,.3,1.15) both; }
+
+@keyframes shockwave {
+  0% { transform: translate(-50%,-50%) scale(.05); opacity: 1; border-width: 22px; }
+  100% { transform: translate(-50%,-50%) scale(1); opacity: 0; border-width: 1px; }
+}
+.shockwave { animation: shockwave .8s cubic-bezier(.1,.7,.3,1) both; }
+
+@keyframes burst {
+  0% { transform: translate(-50%,-50%) translate(0,0) scale(.4) rotate(0); opacity: 1; }
+  20% { transform: translate(-50%,-50%) translate(calc(var(--dx)*.35), calc(var(--dy)*.35)) scale(1.2) rotate(60deg); opacity: 1; }
+  100% { transform: translate(-50%,-50%) translate(var(--dx), var(--dy)) scale(0) rotate(240deg); opacity: 0; }
+}
+.burst { animation: burst .9s cubic-bezier(.1,.8,.3,1) both; }
+
+@keyframes confetti {
+  0% { transform: translate(0,0) rotate(0) rotateX(0); opacity: 1; }
+  35% { transform: translate(var(--dx), var(--dy)) rotate(calc(var(--rot)*.4)) rotateX(360deg); opacity: 1; }
+  100% { transform: translate(calc(var(--dx)*1.35), calc(var(--dy) + 460px)) rotate(var(--rot)) rotateX(1080deg); opacity: 0; }
+}
+.confetti { animation: confetti 2.2s cubic-bezier(.15,.6,.4,1) both; }
+
+/* flash layar putih saat kotak hadiah dibuka — HARUS punya opacity via keyframes,
+   kalau tidak overlay bg-white-nya menutupi layar permanen */
+@keyframes flash {
+  0% { opacity: 0; }
+  12% { opacity: .95; }
+  100% { opacity: 0; }
+}
+.flash { animation: flash .7s ease-out both; }
+
+@keyframes white-flash {
+  0% { opacity: .85; }
+  100% { opacity: 0; }
+}
+.white-flash { animation: white-flash .22s ease-out both; }
+
+@keyframes twinkle {
+  0%,100% { transform: scale(0) rotate(0); opacity: 0; }
+  50% { transform: scale(1) rotate(90deg); opacity: 1; }
+}
+.twinkle { animation: twinkle 1.8s ease-in-out infinite both; }
+
+@keyframes dust {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  15% { opacity: var(--o); }
+  85% { opacity: var(--o); }
+  100% { transform: translateY(-760px) translateX(var(--sx)); opacity: 0; }
+}
+.dust { animation: dust linear infinite both; }
+
+@keyframes score-pop {
+  0% { transform: translate(-50%,0) scale(.4); opacity: 0; }
+  25% { transform: translate(-50%,-14px) scale(1.25); opacity: 1; }
+  100% { transform: translate(-50%,-60px) scale(1); opacity: 0; }
+}
+.score-pop { animation: score-pop .8s ease-out both; }
+
+@keyframes piece-fly {
+  0% { transform: translate(0,0) rotate(0); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); opacity: 0; }
+}
+.piece-fly { animation: piece-fly 1s cubic-bezier(.15,.6,.4,1) both; }
+
+/* ---------- Knife Hit: gift box (kotak hadiah) ---------- */
+@keyframes drop-in {
+  0% { transform: translateY(-520px) scale(.85); }
+  55% { transform: translateY(0) scale(1.15,.8); }
+  70% { transform: translateY(-36px) scale(.94,1.07); }
+  85% { transform: translateY(0) scale(1.05,.95); }
+  93% { transform: translateY(-6px) scale(.99,1.01); }
+  100% { transform: translateY(0) scale(1); }
+}
+.drop-in { animation: drop-in 1s cubic-bezier(.4,.1,.5,1) both; }
+
+@keyframes idle-bob {
+  0%,100% { transform: translateY(0) rotate(0) scale(1); }
+  50% { transform: translateY(-8px) rotate(-1.5deg) scale(1.02); }
+}
+.idle-bob { animation: idle-bob 1.4s ease-in-out infinite; }
+
+@keyframes wobble {
+  0%,100% { transform: rotate(0) translateY(0); }
+  25% { transform: rotate(-2.5deg) translateY(-2px); }
+  75% { transform: rotate(2.5deg) translateY(-2px); }
+}
+.wobble { animation: wobble .6s ease-in-out infinite; }
+
+/* getar halus + glow saat pengisian, tidak lebay */
+@keyframes violent {
+  0%,100% { transform: translate(0,0) rotate(0) scale(1.04); filter: brightness(1); }
+  25% { transform: translate(-2px,-2px) rotate(-3deg) scale(1.06); filter: brightness(1.15); }
+  50% { transform: translate(2px,-1px) rotate(3deg) scale(1.07); filter: brightness(1.2); }
+  75% { transform: translate(-1px,1px) rotate(-2deg) scale(1.06); filter: brightness(1.15); }
+}
+.violent { animation: violent .3s ease-in-out infinite; }
+
+@keyframes lid-fly {
+  0% { transform: translate(0,0) rotate(0); opacity: 1; }
+  100% { transform: translate(170px,-460px) rotate(300deg); opacity: 0; }
+}
+.lid-fly { animation: lid-fly 1s cubic-bezier(.15,.8,.4,1) both; }
+
+@keyframes box-sink {
+  0% { transform: translateY(0) scale(1.15,.85); opacity: 1; }
+  15% { transform: translateY(0) scale(.95,1.05); }
+  30% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(120px) scale(.85); opacity: 0; }
+}
+.box-sink { animation: box-sink 1.6s ease-in both; }
+
+@keyframes seam-pulse {
+  0%,100% { filter: brightness(1); }
+  50% { filter: brightness(1.5); }
+}
+.seam-pulse { animation: seam-pulse .35s ease-in-out infinite; }
+
+/* ---------- Knife Hit: weapon reveal ---------- */
+@keyframes weapon-rise {
+  0% { transform: translateY(100px) scale(.15) rotate(-60deg); opacity: 0; }
+  45% { transform: translateY(-90px) scale(1.25) rotate(340deg); opacity: 1; }
+  70% { transform: translateY(-50px) scale(.95) rotate(322deg); }
+  85% { transform: translateY(-62px) scale(1.03) rotate(326deg); }
+  100% { transform: translateY(-58px) scale(1) rotate(325deg); opacity: 1; }
+}
+.weapon-rise { animation: weapon-rise 1.5s cubic-bezier(.2,.9,.3,1) both; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float { animation: float 2.4s ease-in-out infinite; }
+
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  15% { transform: scale(1.1); }
+  30% { transform: scale(.98); }
+  45% { transform: scale(1.06); }
+}
+.heartbeat { animation: heartbeat 1s ease-in-out infinite; }
+
+@keyframes reveal-pop {
+  0% { transform: scale(1.5); filter: brightness(4) saturate(0); }
+  40% { transform: scale(.92); filter: brightness(1.6); }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+.reveal-pop { animation: reveal-pop .8s cubic-bezier(.3,.8,.4,1) both; }
+
+@keyframes equip-spin {
+  0% { transform: rotate(0) scale(1); }
+  40% { transform: rotate(200deg) scale(1.35); }
+  75% { transform: rotate(370deg) scale(.92); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+.equip-spin { animation: equip-spin .9s cubic-bezier(.3,.8,.4,1) both; }
+
+/* ---------- Knife Hit: UI ---------- */
+@keyframes fade-up {
+  from { transform: translateY(18px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.fade-up { animation: fade-up .5s ease-out both; }
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fade-in { animation: fade-in .4s ease-out both; }
+
+@keyframes letter-pop {
+  0% { transform: translateY(24px) scale(0) rotate(-20deg); opacity: 0; }
+  60% { transform: translateY(-6px) scale(1.3) rotate(6deg); opacity: 1; }
+  100% { transform: translateY(0) scale(1) rotate(0); opacity: 1; }
+}
+.letter-pop { display: inline-block; animation: letter-pop .45s cubic-bezier(.3,.8,.4,1.3) both; }
+
+@keyframes count-pulse {
+  0% { transform: scale(1.6); opacity: .3; filter: blur(3px); }
+  45% { transform: scale(.92); opacity: 1; filter: blur(0); }
+  100% { transform: scale(1); }
+}
+.count-pulse { animation: count-pulse .45s ease-out both; }
+
+@keyframes btn-breathe {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+.btn-breathe { animation: btn-breathe 1.2s ease-in-out infinite; }
+
+@keyframes tap-hint {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.08); }
+}
+.tap-hint { animation: tap-hint .7s ease-in-out infinite; }
+
+@keyframes ring-ping {
+  0% { transform: scale(.6); opacity: .9; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+.ring-ping { animation: ring-ping 1.2s ease-out infinite; }
+
+@keyframes card-in {
+  0% { transform: translateY(14px) scale(.96); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+.card-in { animation: card-in .45s cubic-bezier(.2,.8,.3,1.1) both; }
+
+@keyframes glow-breathe {
+  0%,100% { opacity: .55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+.glow-breathe { animation: glow-breathe 2.4s ease-in-out infinite; }
+
+@keyframes progress-shine {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.35); }
+  100% { filter: brightness(1); }
+}
+.progress-shine { animation: progress-shine 1.8s ease-in-out infinite; }
+
+@keyframes title-float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.title-float { animation: title-float 3s ease-in-out infinite; }
+
+@keyframes shimmer-x {
+  0% { transform: translateX(-120%) skewX(-18deg); }
+  60%,100% { transform: translateX(320%) skewX(-18deg); }
+}
+.shimmer-x { animation: shimmer-x 2.8s ease-in-out infinite; }
+
+@keyframes border-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.anim-border-flow { background-size: 220% 220%; animation: border-flow 5s ease infinite; }
+
+@keyframes podium-spin { to { transform: rotate(360deg); } }
+.podium-spin { animation: podium-spin 24s linear infinite; }
+
+.premium-panel {
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,.14), transparent 55%),
+    linear-gradient(180deg, #276b74 0%, #1c585f 38%, #123b42 100%);
+  box-shadow: 0 24px 60px rgba(0,0,0,.55), inset 0 2px 0 rgba(255,255,255,.22), inset 0 -12px 28px rgba(0,0,0,.28);
+}
+.glass-row { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(6px); }
+
+/* ---------- Knife Hit: bonus & treasure stages ---------- */
+@keyframes coin-blink {
+  0%,100% { filter: brightness(1); }
+  50% { filter: brightness(1.55); }
+}
+.coin-blink { animation: coin-blink 1.1s ease-in-out infinite; }
+
+@keyframes coin-shine-move {
+  0% { transform: translateX(-140%) skewX(-20deg); }
+  60%,100% { transform: translateX(240%) skewX(-20deg); }
+}
+.coin-shine-move { animation: coin-shine-move 1.8s ease-in-out infinite; }
+
+/* koin terbang ke arah --dx/--dy (nama sengaja coin-fly: .coin-pop sudah dipakai
+   Rifle Rock untuk denyut angka koin) */
+@keyframes coin-fly {
+  0% { transform: translate(0,0) scale(.3); opacity: 0; }
+  18% { transform: translate(calc(var(--dx)*.35), calc(var(--dy)*.35)) scale(1.25); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(1); opacity: 1; }
+}
+.coin-fly { animation: coin-fly .55s cubic-bezier(.2,.8,.3,1.2) both; }
+
+@keyframes coin-collect {
+  0% { transform: translate(var(--dx), var(--dy)) scale(1); opacity: 1; }
+  100% { transform: translate(var(--cx), var(--cy)) scale(.35); opacity: .9; }
+}
+.coin-collect { animation: coin-collect .6s cubic-bezier(.4,.1,.5,1) both; }
+
+@keyframes bullet-fly {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(var(--travel)) scale(1); opacity: 1; }
+}
+.bullet-fly { animation: bullet-fly .19s linear both; }
+
+@keyframes muzzle {
+  0% { transform: scale(.4); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.muzzle { animation: muzzle .18s ease-out both; }
+
+@keyframes chest-open {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.12,.9); }
+  100% { transform: scale(1.06); }
+}
+.chest-open { animation: chest-open .5s cubic-bezier(.3,.8,.4,1.3) both; }
+
+@keyframes chest-glow-pulse {
+  0%,100% { opacity: .5; }
+  50% { opacity: 1; }
+}
+.chest-glow-pulse { animation: chest-glow-pulse 1.8s ease-in-out infinite; }
+
+@keyframes dmg-pop {
+  0% { transform: translate(-50%,0) scale(.5); opacity: 0; }
+  25% { transform: translate(-50%,-16px) scale(1.2); opacity: 1; }
+  100% { transform: translate(-50%,-52px) scale(1); opacity: 0; }
+}
+.dmg-pop { animation: dmg-pop .7s ease-out both; }
+
+@keyframes star-twinkle {
+  0%,100% { transform: scale(1) rotate(-8deg); filter: brightness(1); }
+  50% { transform: scale(1.18) rotate(8deg); filter: brightness(1.5); }
+}
+.star-twinkle { animation: star-twinkle .8s ease-in-out infinite; }
+
+@keyframes star-trail {
+  0% { transform: scale(.5); opacity: .9; }
+  100% { transform: scale(1.8) translateX(-26px); opacity: 0; }
+}
+.star-trail { animation: star-trail .7s ease-out infinite; }
+
+@keyframes buff-flash {
+  0% { opacity: 0; }
+  20% { opacity: .8; }
+  100% { opacity: 0; }
+}
+.buff-flash { animation: buff-flash .6s ease-out both; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+.thin-scroll::-webkit-scrollbar { width: 6px; }
+.thin-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,.06); border-radius: 99px; }
+.thin-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,.25); border-radius: 99px; }
+
+/* ===== SUNBURST FX LAB (from Sunburst FX Lab demo) ===== */
+@keyframes spinCenter {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes spinCenterRev {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+@keyframes glarePulse {
+  0%, 100% { opacity: 0.88; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+}
+
+@keyframes corePulseFx {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
+  50% { transform: translate(-50%, -50%) scale(1.14); opacity: 1; }
+}
+
+@keyframes starTwinkleFx {
+  0%, 100% { opacity: 0.15; transform: scale(0.6); }
+  50% { opacity: 0.95; transform: scale(1.2); }
+}
+
+@keyframes ringOutFx {
+  0% { opacity: 0.9; transform: translate(-50%, -50%) scale(0.2); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(2.4); }
+}
+
+.sunburst-halo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  border-radius: 50%;
+  pointer-events: none;
+  backface-visibility: hidden;
+}
+
+.sunburst-rays {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  pointer-events: none;
+  will-change: transform;
+  backface-visibility: hidden;
+  animation: spinCenter 32s linear infinite;
+}
+
+.sunburst-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  border-radius: 50%;
+  pointer-events: none;
+  backface-visibility: hidden;
+}
+
+.sunburst-hot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  animation: glarePulse 2.6s ease-in-out infinite;
+}
+
+/* Menu night sky: four-point gold sparkles */
+.mm-spark {
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fffbe6 0%, #ffd76a 42%, rgba(255,190,60,0) 70%);
+  clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+  filter: drop-shadow(0 0 6px rgba(255,205,90,.9));
+  animation: mmSpark 3.2s ease-in-out infinite;
+}
+
+@keyframes mmSpark {
+  0%, 100% { opacity: .28; transform: scale(.65) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(6deg); }
+}
+
+.star-dot-fx {
+  position: absolute;
+  border-radius: 9999px;
+  background: white;
+  animation: starTwinkleFx var(--tw, 3s) ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* CSS and canvas animations share the same slide activity state. Keep paused
+   slides visible as snapshots without spending frames on their effects. */
+.slide-paused,
+.slide-paused *,
+.slide-paused *::before,
+.slide-paused *::after {
+  animation-play-state: paused !important;
+}
+
+
+@keyframes diamondRewardPop {
+  0% { opacity: 0; transform: translateY(34px) scale(.35); }
+  18% { opacity: 1; transform: translateY(-10px) scale(1.18); }
+  40% { transform: translateY(0) scale(1); }
+  78% { opacity: 1; transform: translateY(-6px) scale(1); }
+  100% { opacity: 0; transform: translateY(-42px) scale(.82); }
+}
+
+.diamond-reward-pop { animation: diamondRewardPop 1.8s cubic-bezier(.2,.8,.2,1) both; }
+
+@keyframes bossDefeatPortrait {
+  0% { transform: scale(.52) rotate(-8deg); opacity: 0; filter: brightness(1.8); }
+  38% { transform: scale(1.08) rotate(2deg); opacity: 1; filter: brightness(1.45); }
+  52% { transform: translateX(-4px) rotate(-2deg); }
+  66% { transform: translateX(4px) rotate(2deg); }
+  100% { transform: none; opacity: 1; filter: drop-shadow(0 8px 18px rgba(0,0,0,.45)); }
+}
+.boss-defeat-portrait { animation: bossDefeatPortrait 1.15s cubic-bezier(.2,.85,.25,1) both; }
+
+@keyframes bossCrack {
+  0% { opacity: 0; transform: scale(.55) rotate(-10deg); }
+  40% { opacity: 0; transform: scale(.8) rotate(0); }
+  62% { opacity: 1; transform: scale(1.02); }
+  100% { opacity: .78; transform: scale(1); }
+}
+.boss-crack-overlay { animation: bossCrack 1.5s ease-out both; }
+
+@keyframes bossAutoContinue {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+.boss-auto-continue { animation: bossAutoContinue 3.4s linear both; }
+
+@keyframes stageClearBurst {
+  0% { opacity: 0; transform: scale(.55); }
+  18% { opacity: 1; transform: scale(1.08); }
+  38% { transform: scale(1); }
+  82% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.06); }
+}
+
+.stage-clear-burst { animation: stageClearBurst 2.1s ease-out both; }
+
+@keyframes diamondRewardReveal {
+  0% { opacity: 0; transform: scale(.62); filter: brightness(1.8); }
+  18% { opacity: 1; transform: scale(1.04); filter: brightness(1.2); }
+  38% { transform: scale(1); filter: brightness(1); }
+  82% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.03); }
+}
+
+.diamond-reveal { animation: diamondRewardReveal 2.1s cubic-bezier(.2,.8,.2,1) both; }
+
+/* SANS STUDIO — Juicy Squeeze 2D Game Intro + Mochi Garden Audio (from 2d-game-intro-animation (1).zip) */
+.font-studio {
+  font-family: 'Fredoka', sans-serif;
+}
+
+.studio-red-stage {
+  background: radial-gradient(
+    circle at 50% 46%,
+    #FF2E2E 0%,
+    #F11E1E 54%,
+    #DC1414 100%
+  );
+}
+
+.studio-red-flat {
+  background: #F11E1E;
+}
+
+input[type='range'].juicy-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.22);
+  height: 6px;
+  border-radius: 999px;
+  outline: none;
+}
+
+input[type='range'].juicy-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+input[type='range'].juicy-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+/* SGA Armory palette helpers; motion classes/timelines are shared with Perfect Shot. */
+.font-arsenal-title { font-family: 'Russo One', 'Lilita One', system-ui, sans-serif; }
+.arsenal-armory-open, .arsenal-armory-closing { isolation: isolate; }
+.arsenal-armory-closing { pointer-events: none; }
+.arsenal-firefly { opacity: .7; box-shadow: 0 0 7px 2px rgba(190,170,255,.45); animation: arsenalFirefly 6s ease-in-out infinite alternate; }
+@keyframes arsenalFirefly { from { transform: translate3d(-5px,4px,0) scale(.75); opacity: .35; } to { transform: translate3d(8px,-12px,0) scale(1.15); opacity: .9; } }
+.arsenal-scroll-area { scrollbar-width: thin; scrollbar-color: rgba(192,132,252,.75) rgba(15,8,28,.55); overscroll-behavior: contain; }
+.arsenal-scroll-area::-webkit-scrollbar { width: 5px; }
+.arsenal-scroll-area::-webkit-scrollbar-track { background: rgba(15,8,28,.55); border-radius: 999px; }
+.arsenal-scroll-area::-webkit-scrollbar-thumb { background: linear-gradient(180deg,#e879f9,#7c3aed); border-radius: 999px; }
+

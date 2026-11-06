@@ -1,0 +1,20 @@
+node_modules
+dist
+.env
+
+# scratch / test artifacts
+scratch-*.mjs
+scratch-shots*/
+# AI Studio Development Environment Variables
+DISABLE_HMR=false
+
+# android build output
+release/
+android/local.properties
+android/keystore.properties
+android/*.keystore
+android/.gradle/
+android/build/
+android/app/build/
+android/app/src/main/assets/public/
+android/capacitor-cordova-android-plugins/

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#05060a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Game Arcade Hub</title>
+    <meta name="description" content="Pilih dan mainkan 3 game seru: Diamond Breaker, Gun Hit Arcade, dan Knife Boss 100 Lv." />
+    <meta property="og:title" content="Game Arcade Hub" />
+    <meta property="og:description" content="Pilih dan mainkan 3 game seru: Diamond Breaker, Gun Hit Arcade, dan Knife Boss 100 Lv." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Fonts ship with the app (src/fonts.css): no network request, no fallback face offline. -->
+    <style>
+      html, body, #root { width: 100%; height: 100%; margin: 0; background: #05060a; }
+      .boot-screen { min-height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: #cbd5e1; font: 600 12px system-ui, sans-serif; letter-spacing: .14em; }
+      .boot-spinner { width: 26px; height: 26px; border: 2px solid #334155; border-top-color: #38bdf8; border-radius: 50%; animation: boot-spin .8s linear infinite; }
+      @keyframes boot-spin { to { transform: rotate(360deg); } }
+    </style>
+  </head>
+  <body>
+    <div id="root"><div class="boot-screen" role="status"><span class="boot-spinner"></span><span>MENYIAPKAN GAME</span></div></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
